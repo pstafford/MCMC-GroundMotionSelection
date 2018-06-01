@@ -107,10 +107,13 @@ Diagnal_Cov_one = eye(length(TargetCov));
 SDIM_SaT1 = sqrt(diag(TargetCov))';
 
 for i = 1:length(TargetCov)
-Diagnal_Cov_one(i,i) = SDIM_SaT1(i);
+Diagnal_Cov_one(i,i) = (SDIM_SaT1(i)^2)/Input_MCMCGMS_1.gamma;
 end
 % Cov matrix
-CovZ = Diagnal_Cov_one./Input_MCMCGMS_1.gamma; % noise Cov matrix
+CovZ = Diagnal_Cov_one; % noise Cov matrix
+
+% Conditional standard deviation
+SDIM_SaT1 = sqrt(diag(CovZ))';
 
 % Matrix to save the result of each energy check replication 
 phi_nm_nRep = zeros(1,nRep);
