@@ -2,7 +2,7 @@
 
 The code at this repository provides an implementation of the algorithms described in:
 
-Shi Y and Stafford PJ (2018). "Markov-chain Monte Carlo Ground-Motion Selection Algorithms for Conditional Intensity Measure Targets", _Earthquake Engineering & Structural Dynamics_ (currently under review)
+Shi Y and Stafford PJ (2018). "Markov-chain Monte Carlo Ground-Motion Selection Algorithms for Conditional Intensity Measure Targets", _Earthquake Engineering & Structural Dynamics_ (currently in press)
 
 The code here presents an illustrative example of _Case 1_ from the above article.
 
