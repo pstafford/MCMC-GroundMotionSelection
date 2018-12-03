@@ -119,6 +119,13 @@ rho_PD_modify = rho;
 rho_T1_PD_modify = rho_T1;
 SdIM_PD_modify = SdIM;
 
+% Delete conditional IM content
+TgtIM_PD_modify(Index_T1) = [];
+rho_PD_modify(Index_T1,:) = [];
+rho_PD_modify(:,Index_T1) = [];
+rho_T1_PD_modify(Index_T1) = [];
+SdIM_PD_modify(Index_T1) = [];
+
 % Matrix to save 
 corr_codition = zeros(length(TgtIM_PD_modify));
 for i = 1:length(TgtIM_PD_modify)
@@ -149,8 +156,9 @@ if p ~= 0
   Tgt_distro_output.Max_change1_Corr = max(abs(TargetCov-TargetCov_unchanged));
   TargetCov_PDmodify = TargetCov;
 % set covariance zero at IMj   
-  TargetCov_PDmodify(Index_T1,:) = zeros(1,length(TargetCov));
-  TargetCov_PDmodify(:,Index_T1) = zeros(length(TargetCov),1);  
+  TargetCov_PDmodify = [TargetCov_PDmodify(1:Index_T1-1,:);zeros(1,length(TargetCov));TargetCov_PDmodify(Index_T1:end,:)];
+  TargetCov_PDmodify = [TargetCov_PDmodify(:,1:Index_T1-1),zeros(length(TargetCov)+1,1),TargetCov_PDmodify(:,Index_T1:end)];
+  
 % Target Covariance obtained based Eq 4 shown in the article which is equal to TargetCov_unchanged used here. 
   TargetCov_Eq_4 = Uncondition_Cov - Cov_T1_other_save;
 
